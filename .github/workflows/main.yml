@@ -1,0 +1,23 @@
+name: Test Custom Action
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run my action
+        id: hello
+        uses: ./
+        with:
+          who-to-greet: Mark 456
+
+      - name: Show output
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
